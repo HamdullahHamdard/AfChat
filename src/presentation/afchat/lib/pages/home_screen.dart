@@ -1,3 +1,5 @@
+import 'package:afchat/services/cloud_storage_services.dart';
+import 'package:afchat/services/database_services.dart';
 import 'package:afchat/services/media_services.dart';
 import 'package:afchat/services/navigation_services.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -55,5 +57,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
     GetIt.instance.registerSingleton<NavigationServices>(NavigationServices());
     GetIt.instance.registerSingleton<MediaServices>(MediaServices());
+    GetIt.instance.registerSingleton<CloudStorageServices>(CloudStorageServices());
+    GetIt.instance.registerSingleton<DatabaseServices>(DatabaseServices());
   }
 }
