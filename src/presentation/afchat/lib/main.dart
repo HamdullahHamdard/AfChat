@@ -1,4 +1,4 @@
-import 'package:afchat/home_screen.dart';
+import 'package:afchat/pages/home_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const HomeScreen(),
+      home: HomeScreen(key: UniqueKey(),onInitializationComplete: () {  },),
     );
   }
 }
