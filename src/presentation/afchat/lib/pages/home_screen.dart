@@ -1,3 +1,4 @@
+import 'package:afchat/services/media_services.dart';
 import 'package:afchat/services/navigation_services.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
@@ -53,5 +54,6 @@ class _HomeScreenState extends State<HomeScreen> {
   void _registerServices(){
 
     GetIt.instance.registerSingleton<NavigationServices>(NavigationServices());
+    GetIt.instance.registerSingleton<MediaServices>(MediaServices());
   }
 }
