@@ -1,22 +1,47 @@
 import 'package:afchat/pages/home_screen.dart';
+import 'package:afchat/pages/login_screen.dart';
+import 'package:afchat/provider/authentication_provider.dart';
+import 'package:afchat/services/navigation_services.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(const MyApp());
+  // runApp(MainApp());
+  runApp(
+    HomeScreen(
+        key: UniqueKey(),
+        onInitializationComplete: () {
+          runApp(MainApp());
+        }),
+  );
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  // This widget is the root of your application.
+class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider<AuthenticationProvider>(
+          create: (BuildContext context) {
+            return AuthenticationProvider();
+          },
+        ),
+      ],
+      child: MaterialApp(
+        title: "AfChat",
+        theme: ThemeData(
+            // Color.fromRGBO(0, 169, 236, 1)
+            backgroundColor: Color.fromRGBO(0, 169, 236, 1),
+            scaffoldBackgroundColor: Color.fromRGBO(0, 169, 236, 1),
+            bottomNavigationBarTheme: BottomNavigationBarThemeData(
+              backgroundColor: Color.fromRGBO(0, 169, 236, 1),
+            )),
+        navigatorKey: NavigationServices.navigatorKey,
+        initialRoute: '/login',
+        routes: {
+          '/login': (BuildContext context) => LoginScreen(),
+        },
       ),
-      home: HomeScreen(key: UniqueKey(),onInitializationComplete: () {  },),
     );
   }
 }

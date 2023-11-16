@@ -8,20 +8,34 @@ import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 
 class HomeScreen extends StatefulWidget {
-  HomeScreen({ Key? key, required this.onInitializationComplete });
-  final VoidCallback onInitializationComplete;
+   final VoidCallback onInitializationComplete;
+
+   const HomeScreen({Key? key, required this.onInitializationComplete}): super(key: key);
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
-
 class _HomeScreenState extends State<HomeScreen> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
-    _setup().then((__) => widget.onInitializationComplete);
+    _initializeAsyncDependencies();
+
+  }
+  Future<void> _initializeAsyncDependencies() async {
+    // >>> initialize async dependencies <<<
+    // >>> register favorite dependency manager <<<
+    // >>> reap benefits <<<
+    Future.delayed(Duration(milliseconds: 2300)).then((_){
+      _setup().then((_) {
+        widget.onInitializationComplete();
+      });
+    });
+    // Future.delayed(
+    //   Duration(milliseconds: 2000),
+    //       () => ,
+    // ).then((value) => _setup());
   }
 
   @override
